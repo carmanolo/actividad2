@@ -1,6 +1,6 @@
 "use strict";
 import { Router } from "express";
-import { isAdmin } from "../middlewares/authorization.middleware.js";
+import { authorizeRoles } from "../middlewares/authorization.middleware.js";
 import { authenticateJwt } from "../middlewares/authentication.middleware.js";
 import {
   deleteUser,
@@ -13,12 +13,11 @@ const router = Router();
 
 router
   .use(authenticateJwt)
-  .use(isAdmin);
 
 router
-  .get("/", getUsers)
-  .get("/detail/", getUser)
-  .patch("/detail/", updateUser)
-  .delete("/detail/", deleteUser);
+  .get("/", authorizeRoles("administrador"), getUsers)
+  .get("/detail/", authorizeRoles("administrador"), getUser)
+  .patch("/detail/", authorizeRoles("administrador"), updateUser)
+  .delete("/detail/", authorizeRoles("administrador"), deleteUser);
 
 export default router;
