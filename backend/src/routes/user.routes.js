@@ -15,9 +15,9 @@ router
   .use(authenticateJwt)
 
 router
-  .get("/", authorizeRoles("administrador"), getUsers)
-  .get("/detail/", authorizeRoles("administrador"), getUser)
-  .patch("/detail/", authorizeRoles("administrador"), updateUser)
-  .delete("/detail/", authorizeRoles("administrador"), deleteUser);
+  .get("/", /*authorizeRoles("administrador")*/ getUsers)
+  .get("/detail/", /*authorizeRoles("administrador"),*/ getUser)
+  .patch("/detail/", /*authorizeRoles("administrador"),*/ updateUser)
+  .delete("/detail/", /*authorizeRoles("administrador"),*/ deleteUser);
 
 export default router;
