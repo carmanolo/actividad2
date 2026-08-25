@@ -11,8 +11,8 @@ import {
 
 const router = Router();
 
-router
-  .use(authenticateJwt)
+/*router
+  .use(authenticateJwt)*/
 
 router
   .get("/", /*authorizeRoles("administrador")*/ getUsers)
